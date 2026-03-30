@@ -1,4 +1,4 @@
-package com.inbank.back;
+package com.inbank.back.Controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 // import org.springframework.web.bind.annotation.CrossOrigin; // Will need to be uncommented in the future
 import org.springframework.web.bind.annotation.RestController;
+
+import com.inbank.back.DecisionResponse;
+import com.inbank.back.Services.Decision;
 
 // @CrossOrigin(origins = "http://localhost:XXXX") // Port will need to be replaced in the future
 @RestController

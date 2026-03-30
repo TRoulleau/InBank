@@ -1,5 +1,7 @@
-package com.inbank.back;
+package com.inbank.back.Services;
 import org.springframework.stereotype.Service;
+import com.inbank.back.Exceptions.ResourceNotFoundException;
+import com.inbank.back.DecisionResponse;
 
 @Service
 public class Decision {
@@ -20,11 +22,11 @@ public class Decision {
     public int getModifier(String personalCode) {
         // The modfiers are mocked for the assignement
         return switch (personalCode) {
-            case "49002010965" -> -1; // debt
+            case "49002010965" -> 0; // debt
             case "49002010976" -> 100;
             case "49002010987" -> 300;
             case "49002010998" -> 1000;
-            default -> 0; // unknown
+            default -> -1; // unknown
         };
     }
 
@@ -41,7 +43,7 @@ public class Decision {
         int creditModifier = getModifier(personalCode);
 
         if (creditModifier == -1) {
-            return new DecisionResponse(false, 0, suggestedPeriod, "Invalid user");
+            throw new ResourceNotFoundException(); 
         }
 
         if (creditModifier == 0) {
