@@ -1,0 +1,14 @@
+# Backend (Spring/Gradle)
+back/.gradle/
+back/build/
+back/bin/
+!back/gradle/wrapper/gradle-wrapper.jar
+
+# Frontend
+front/node_modules/
+front/dist/
+front/.env
+
+# IDE & System
+.vscode/
+.DS_Store
