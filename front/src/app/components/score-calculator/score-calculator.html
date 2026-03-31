@@ -1,0 +1,40 @@
+<div class="nav-bar">
+    <div class="nav-logo">
+      <button (click)="refresh()"><img src="inbank-wordmark-nightviolet.svg" alt="Inbank"></button>
+    </div>
+    <span>
+        <!-- Just to make the logo stay on the left -->
+    </span>
+</div>
+<main>
+    <div class="score-calculator">
+        <h1>Loan Decision</h1>
+        <p>Enter your details to get InBank's decision.</p>
+        <br>
+        <form (ngSubmit)="calculateScore()">
+            <div class="form-group">
+                <label for="age">Personal Code:</label>
+                <input type="number" id="personalCode" [(ngModel)]="personalCode" name="personalCode" required>
+            </div>
+            <div class="form-group">
+                <label for="income">Loan Amount:</label>
+                <input type="number" id="loanAmount" [(ngModel)]="loanAmount" name="loanAmount" required>
+            </div>
+            <div class="form-group">
+                <label for="creditScore">Loan Period (months):</label>
+                <input type="number" id="loanPeriod" [(ngModel)]="loanPeriod" name="loanPeriod" required>
+            </div>
+            <button type="submit">Calculate</button>
+        </form>
+        @if (errorMessage) {
+            <div class="alert-error">
+              {{ errorMessage }}
+            </div>
+          }
+        @if (result !== null) {
+            <div class="result">
+                <h2>Decision: {{ result }}</h2>
+            </div>
+        }
+    </div>
+</main>

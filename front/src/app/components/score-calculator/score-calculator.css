@@ -1,0 +1,45 @@
+.nav-bar {
+    display: flex;
+    align-items: center;
+    background-color: #7d00ae60;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 64px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-logo img {
+    height: 40px;
+    width: auto;
+}
+
+.nav-bar span {
+    flex-grow: 1;
+}
+
+main {
+    display: flex;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.score-calculator {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
