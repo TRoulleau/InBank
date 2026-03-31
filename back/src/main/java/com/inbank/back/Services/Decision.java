@@ -39,7 +39,7 @@ public class Decision {
     * @return a message explaining the decision
     */
     public DecisionResponse scoreCalculation(String personalCode, int loanAmount, int loanPeriod) {
-        int suggestedPeriod = loanPeriod;        
+        int suggestedPeriod = Math.min(loanPeriod, MAX_PERIOD);
         int creditModifier = getModifier(personalCode);
 
         if (creditModifier == -1) {
@@ -56,6 +56,7 @@ public class Decision {
         if (score >= 1) {
             // We approve the loan, but we need to check if the amount is within the limits
             int finalAmount = Math.min((int) maxAmountForRequestedPeriod, MAX_AMOUNT);
+            suggestedPeriod = Math.max(suggestedPeriod, MIN_PERIOD);
             return new DecisionResponse(true, finalAmount, suggestedPeriod, "Approved");
         }
 
