@@ -34,6 +34,19 @@ During my academic studies, we has a course on web development where we used Ang
 Java 21 is an LTS version, which ensures long-term support and stability for the backend. Angular 21 is the latest version.
 While I am familiar with some CSS frameworks (like Bootstrap), I opted for plain CSS because extensive styling was not a requirement for this project, and I wanted to keep the frontend simple and focused on functionality.
 
+For the backend, I chose to separate the logic between the controller and the service layer to adhere to the Single Responsibility Principle. The controller handles HTTP requests and responses, while the service layer contains the business logic for loan decision-making.
+I also implement custom Exceptions to handle specific error cases, when a user is not found, to return a 404 status code.
+This is the only exception that I implemented, but in a real-world application, I would implement more specific exceptions to handle different error scenarios (invalid input, database errors, etc.) and return appropriate HTTP status codes.
+
+---
+
+**"What is one thing you would improve about the take home assignment and how would you improve it?"**
+
+Currently, the mocked users are hardcoded in a switch case. In a real-world scenario, I would implement a database (like MySQL or PostgreSQL) to store user segments and debt status. As banking is sensitive, I would also implement proper authentication and authorization mechanisms to ensure that only authorized personnel can access the loan decision engine, with OAuth2.
+Additionally, I could implement logging and monitoring to track the performance and usage of the application.
+I would also add more tests, especially for the frontend, to ensure that all components and services are working as expected.
+
+
 ---
 
 **How to run the project:**
