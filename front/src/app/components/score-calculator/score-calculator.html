@@ -24,17 +24,58 @@
                 <label for="creditScore">Loan Period (months):</label>
                 <input type="number" id="loanPeriod" [(ngModel)]="loanPeriod" name="loanPeriod" required>
             </div>
-            <button type="submit">Calculate</button>
+            <div class="form-group button-group">
+                <button type="submit">Calculate</button>
+            </div>
         </form>
         @if (errorMessage) {
             <div class="alert-error">
+                <img src="warning.png" alt="Warning">
               {{ errorMessage }}
             </div>
           }
         @if (result !== null) {
-            <div class="result">
-                <h2>Decision: {{ result }}</h2>
+            <div class="result-container" [ngClass]="{'approved': result.approved, 'rejected': !result.approved}">
+                <div class="result-header">
+                    <span class="status-icon">{{ result.approved ? '✅' : '❌' }}</span>
+                    <h2>{{ result.approved ? 'Loan Approved' : 'Loan Not Approved' }}</h2>
+                </div>
+
+                <div class="result-body">
+                    <p class="decision-message">{{ result.message }}</p>
+                    
+                    <div class="decision-details">
+                        <div class="detail-item">
+                            <span class="label">Max amount:</span>
+                            <span class="value">{{ result.amount }} €</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Period:</span>
+                            <span class="value">{{ result.period }} months</span>
+                        </div>
+                    </div>
+
+                    @if (!result.approved && result.amount > 0) {
+                        <div class="suggestion-box">
+                            <p><strong>Suggestion:</strong> Based on your profile, we could offer you 
+                                <strong>{{ result.amount }} €</strong> for 
+                                <strong>{{ result.period }} months</strong>.</p>
+                        </div>
+                    }
+                </div>
             </div>
         }
     </div>
 </main>
+<div class="infos">
+    <h3>Accounts that are hardcoded for the demonstration are:</h3>
+    <ul>
+        <li>Personal Code: 49002010965 - Rejected (debt)</li>
+        <li>Personal Code: 49002010976 - Credit Modifier: 100</li>
+        <li>Personal Code: 49002010987 - Credit Modifier: 300</li>
+        <li>Personal Code: 49002010998 - Credit Modifier: 1000</li>
+    </ul>
+</div>
+<footer>
+    <p>&copy; 2026 Tom ROULLEAU for InBank.</p>
+</footer>

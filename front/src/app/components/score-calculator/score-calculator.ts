@@ -11,7 +11,7 @@ import { LoanDecision } from '../../services/loan-decision';
 })
 export class ScoreCalculator {
   errorMessage: string = '';
-  result: string | null = null;
+  result: DecisionResponse | null = null;
   personalCode: string = '';
   loanAmount: string = '';
   loanPeriod: string = '';
@@ -25,11 +25,10 @@ export class ScoreCalculator {
   calculateScore(): void {
     this.errorMessage = '';
     this.result = null;
-
+    this.cdr.detectChanges();
 
     if (!this.personalCode || !this.loanAmount || !this.loanPeriod) {
       this.errorMessage = 'Please fill in all fields';
-      this.result = null;
       this.cdr.detectChanges();
       return;
     }
@@ -41,7 +40,7 @@ export class ScoreCalculator {
     }})
       .then(response => {
         this.errorMessage = '';
-        this.result = response.score || response.result || JSON.stringify(response);
+        this.result = response as DecisionResponse;
         this.cdr.detectChanges();
       })
       .catch(error => {
@@ -56,4 +55,12 @@ export class ScoreCalculator {
         console.error('Score calculation failed:', error);
       });
   }
+}
+
+// Interface for the response of the API
+export interface DecisionResponse {
+  approved: boolean;
+  amount: number;
+  period: number;
+  message: string;
 }
